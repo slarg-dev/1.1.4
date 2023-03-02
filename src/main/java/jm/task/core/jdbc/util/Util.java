@@ -14,7 +14,7 @@ public class Util {
         private static Connection conn = null;
         private static Util instance = null;
         private static String url = "url";
-        private static String password = "pswrd";
+        private static String password = "password";
         private static String name = "name";
 
         private Util() {
