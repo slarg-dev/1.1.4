@@ -1,14 +1,8 @@
 package jm.task.core.jdbc.util;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
 public class Util {
         private static Connection conn = null;
@@ -17,25 +11,13 @@ public class Util {
         private static String password = "password";
         private static String name = "name";
 
-        private Util() {
+        public static Connection getConnection() {
             try {
-                if (null == conn || conn.isClosed()) {
-                    conn = DriverManager.getConnection(url, name, password);
-                }
+                return DriverManager.getConnection(url, name, password);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
+            return null;
+        }}
 
-        public static Util getInstance() {
-            if (null == instance) {
-                instance = new Util();
-            }
-            return instance;
-        }
-
-        public Connection getConnection() {
-            return conn;
-        }
-        }
 
