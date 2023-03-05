@@ -22,9 +22,8 @@ public class UserDaoJDBCImpl implements UserDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            conn.close();
         }
+        conn.close();
     }
 
     // Удаление таблицы User(ов) – не должно приводить к исключению, если таблицы не существует
@@ -35,9 +34,9 @@ public class UserDaoJDBCImpl implements UserDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            conn.close();
         }
+        conn.close();
+
     }
 
     // Добавление User в таблицу
@@ -50,10 +49,8 @@ public class UserDaoJDBCImpl implements UserDao {
             query.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            conn.close();
         }
-
+        conn.close();
     }
 
     // Удаление User из таблицы ( по id )
@@ -65,9 +62,8 @@ public class UserDaoJDBCImpl implements UserDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            conn.close();
         }
+        conn.close();
     }
 
     // Получение всех User(ов) из таблицы
@@ -83,9 +79,8 @@ public class UserDaoJDBCImpl implements UserDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            conn.close();
         }
+        conn.close();
         return users;
     }
 
@@ -97,8 +92,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            conn.close();
         }
+        conn.close();
     }
 }
