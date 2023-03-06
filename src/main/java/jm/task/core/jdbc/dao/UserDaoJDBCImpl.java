@@ -19,11 +19,11 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Statement statement = conn.createStatement()) {
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS users " +
                     "(id BIGINT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), last_name VARCHAR(255), age INT)");
-
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        conn.close();
+
     }
 
     // Удаление таблицы User(ов) – не должно приводить к исключению, если таблицы не существует
@@ -31,7 +31,7 @@ public class UserDaoJDBCImpl implements UserDao {
         Connection conn = Util.getConnection();
         try (Statement statement = conn.createStatement()) {
             statement.executeUpdate("DROP TABLE IF EXISTS users");
-
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -47,6 +47,7 @@ public class UserDaoJDBCImpl implements UserDao {
             query.setString(2, lastName);
             query.setByte(3, age);
             query.executeUpdate();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -59,11 +60,11 @@ public class UserDaoJDBCImpl implements UserDao {
         try (PreparedStatement query = conn.prepareStatement("DELETE FROM users WHERE id = ?")) {
             query.setLong(1, id);
             query.executeUpdate();
-
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        conn.close();
+
     }
 
     // Получение всех User(ов) из таблицы
@@ -77,6 +78,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 user.setId(resultSet.getLong("id"));
                 users.add(user);
             }
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -89,7 +91,7 @@ public class UserDaoJDBCImpl implements UserDao {
         final Connection conn = Util.getConnection();
         try (Statement statement = conn.createStatement()) {
             statement.executeUpdate("TRUNCATE TABLE users");
-
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
