@@ -59,7 +59,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
-    // Получение всех User(ов) из таблицы
+    // Получение всех User() из таблицы
     public List<User> getAllUsers() throws SQLException {
         List<User> users = new ArrayList<>();
         try (Connection conn = Util.getConnection(); ResultSet resultSet = conn.createStatement().executeQuery("SELECT * FROM users");) {
